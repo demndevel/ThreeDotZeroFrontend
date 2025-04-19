@@ -16,7 +16,7 @@ fun createApi(serverUrl: String): Api {
 		override suspend fun receiveData(b: Int, m: Int): String {
 			println("eeh")
 
-			val result = client.get("$serverUrl/get?m=$m&b=$b")
+			val result = client.get("$serverUrl/distribute-containers?m=$m&b=$b")
 
 			println(result.bodyAsText())
 

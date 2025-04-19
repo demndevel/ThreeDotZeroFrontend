@@ -14,7 +14,7 @@ import kotlin.coroutines.EmptyCoroutineContext
 
 @OptIn(ExperimentalComposeUiApi::class)
 fun main() {
-	val serverUrl = "https://someserver.com"
+	val serverUrl = "http://82.117.87.58:9002"
 
 	val api = createApi(serverUrl)
 	val scope = CoroutineScope(EmptyCoroutineContext)
@@ -40,7 +40,7 @@ fun main() {
 						}
 
 						else -> {
-							window.location.href = "$serverUrl:9000/$result"
+							window.location.href = "$serverUrl:9003/$result"
 						}
 					}
 				}
