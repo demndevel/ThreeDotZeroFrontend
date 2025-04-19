@@ -4,26 +4,23 @@ import io.ktor.client.*
 import io.ktor.client.engine.js.*
 import io.ktor.client.request.*
 import io.ktor.client.statement.*
-import kotlinx.coroutines.delay
 
 interface Api {
-	suspend fun receiveData(b: Int, m: Int, type: String): String
+	suspend fun receiveData(b: Int, m: Int): String
 }
 
-fun createApi(): Api {
+fun createApi(serverUrl: String): Api {
 	val client = HttpClient(Js)
 
 	return object: Api {
-		override suspend fun receiveData(b: Int, m: Int, type: String): String {
+		override suspend fun receiveData(b: Int, m: Int): String {
 			println("eeh")
 
-			val result = client.get("https://jsonplaceholder.typicode.com/posts")
-//
+			val result = client.get("$serverUrl/get?m=$m&b=$b")
+
 			println(result.bodyAsText())
 
-			delay(4000)
-
-			return "https://mini.ya.ru/"
+			return "-1"
 		}
 	}
 }
