@@ -60,7 +60,7 @@ fun App(
 				) {
 					OutlinedTextField(
 						value = bConstant,
-						onValueChange = { if (it.toIntOrNull() != null) bConstant = it },
+						onValueChange = { if (it.toIntOrNull() != null || it.isEmpty()) bConstant = it },
 						placeholder = { Text("B constant") },
 						isError = uiState == AppUiState.BIsTooSmall,
 					)
@@ -75,7 +75,7 @@ fun App(
 
 					OutlinedTextField(
 						value = mConstant,
-						onValueChange = { if (it.toIntOrNull() != null) mConstant = it },
+						onValueChange = { if (it.toIntOrNull() != null || it.isEmpty()) mConstant = it },
 						placeholder = { Text("M constant") },
 						isError = uiState == AppUiState.MIsTooSmall,
 					)
@@ -90,10 +90,11 @@ fun App(
 
 					Button(
 						onClick = {
+							if (bConstant.toIntOrNull() == null || mConstant.toIntOrNull() == null) return@Button
+
 							receive(
 								bConstant.toInt(),
 								mConstant.toInt(),
-//								selectedType.name,
 							)
 						},
 						modifier = Modifier
